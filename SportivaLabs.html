@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Semana Deportiva UPSLP</title>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    body{
+      min-height:100vh;
+
+      background:
+      linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+      url('https://www.upslp.edu.mx/upslp/wp-content/uploads/2023/09/DJI_0619.jpg');
+
+      background-size:cover;
+      background-position:center;
+      background-attachment:fixed;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+      padding:40px;
+    }
+
+    .contenedor{
+      width:100%;
+      max-width:1200px;
+      text-align:center;
+    }
+
+    .titulo{
+      color:white;
+      margin-bottom:25px;
+    }
+
+    .titulo h1{
+      font-size:3rem;
+      color:#ff8c32;
+      margin-bottom:10px;
+    }
+
+    .panel-equipos{
+      background:#0b1f3a;
+      border-radius:30px;
+      padding:35px;
+      box-shadow:0 15px 35px rgba(0,0,0,0.4);
+    }
+
+    .equipos-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
+      gap:25px;
+    }
+
+    .equipo-card{
+      background:white;
+      border-radius:22px;
+      padding:25px;
+      transition:0.3s;
+      position:relative;
+      overflow:hidden;
+    }
+
+    .equipo-card:hover{
+      transform:translateY(-5px);
+    }
+
+    .barra{
+      position:absolute;
+      top:0;
+      left:0;
+      width:100%;
+      height:8px;
+      background:#ff8c32;
+    }
+
+    .nombre-equipo{
+      color:#0b1f3a;
+      font-size:1.5rem;
+      font-weight:bold;
+      margin-top:10px;
+      margin-bottom:15px;
+    }
+
+    .contador{
+      font-size:4rem;
+      font-weight:bold;
+      color:#102b52;
+      margin:15px 0 25px;
+    }
+
+    .botones{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+
+    button{
+      border:none;
+      border-radius:12px;
+      padding:14px;
+      font-size:1rem;
+      font-weight:bold;
+      cursor:pointer;
+      transition:0.2s;
+    }
+
+    button:hover{
+      transform:scale(1.03);
+    }
+
+    .sumar{
+      background:#ff8c32;
+      color:white;
+    }
+
+    .restar{
+      background:#102b52;
+      color:white;
+    }
+
+    .reset{
+      grid-column:span 2;
+      background:#e8edf5;
+      color:#0b1f3a;
+    }
+
+    .estadisticas-btn{
+      margin-top:30px;
+      background:#ff8c32;
+      color:white;
+      padding:16px 28px;
+      font-size:1rem;
+      border-radius:14px;
+      text-decoration:none;
+      display:inline-block;
+      font-weight:bold;
+      transition:0.3s;
+    }
+
+    .estadisticas-btn:hover{
+      transform:scale(1.05);
+      background:#ff9d52;
+    }
+    .powered{
+    position:fixed;
+    bottom:12px;
+    right:15px;
+
+    color:rgba(255,255,255,0.7);
+
+    font-size:0.9rem;
+
+    letter-spacing:1px;
+
+    font-weight:300;
+
+    z-index:999;
+}
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <div class="titulo">
+      <h1>Semana Deportiva UPSLP</h1>
+      <h2>
+        Contador oficial de puntos para los equipos
+      </h2>
+    </div>
+
+    <div class="panel-equipos">
+
+      <div class="equipos-grid">
+
+        <div class="equipo-card">
+
+          <div class="barra"></div>
+
+          <div class="nombre-equipo">
+            ITI
+          </div>
+
+          <div class="contador" id="puntos1">0</div>
+
+          <div class="botones">
+
+            <button class="sumar" onclick="cambiarPuntos(1,1)">
+              +1 Punto
+            </button>
+
+            <button class="restar" onclick="cambiarPuntos(1,-1)">
+              -1 Punto
+            </button>
+
+            <button class="reset" onclick="resetear(1)">
+              Reiniciar
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="equipo-card">
+
+          <div class="barra"></div>
+
+          <div class="nombre-equipo">
+            LAG
+          </div>
+
+          <div class="contador" id="puntos2">0</div>
+
+          <div class="botones">
+
+            <button class="sumar" onclick="cambiarPuntos(2,1)">
+              +1 Punto
+            </button>
+
+            <button class="restar" onclick="cambiarPuntos(2,-1)">
+              -1 Punto
+            </button>
+
+            <button class="reset" onclick="resetear(2)">
+              Reiniciar
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="equipo-card">
+
+          <div class="barra"></div>
+
+          <div class="nombre-equipo">
+            MERCA
+          </div>
+
+          <div class="contador" id="puntos3">0</div>
+
+          <div class="botones">
+
+            <button class="sumar" onclick="cambiarPuntos(3,1)">
+              +1 Punto
+            </button>
+
+            <button class="restar" onclick="cambiarPuntos(3,-1)">
+              -1 Punto
+            </button>
+
+            <button class="reset" onclick="resetear(3)">
+              Reiniciar
+            </button>
+
+          </div>
+
+        </div>
+
+        <div class="equipo-card">
+
+          <div class="barra"></div>
+
+          <div class="nombre-equipo">
+            ISTI
+          </div>
+
+          <div class="contador" id="puntos4">0</div>
+
+          <div class="botones">
+
+            <button class="sumar" onclick="cambiarPuntos(4,1)">
+              +1 Punto
+            </button>
+
+            <button class="restar" onclick="cambiarPuntos(4,-1)">
+              -1 Punto
+            </button>
+
+            <button class="reset" onclick="resetear(4)">
+              Reiniciar
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <a href="estadisticas.html" class="estadisticas-btn">
+        Ver Estadísticas
+      </a>
+
+    </div>
+
+  </div>
+
+  <script>
+
+    let puntos = JSON.parse(localStorage.getItem("puntosEquipos")) || {
+      1: 0,
+      2: 0,
+      3: 0,
+      4: 0
+    };
+
+    actualizarPantalla();
+
+    function guardarDatos(){
+      localStorage.setItem("puntosEquipos", JSON.stringify(puntos));
+    }
+
+    function actualizarPantalla(){
+
+      document.getElementById("puntos1").textContent = puntos[1];
+      document.getElementById("puntos2").textContent = puntos[2];
+      document.getElementById("puntos3").textContent = puntos[3];
+      document.getElementById("puntos4").textContent = puntos[4];
+
+    }
+
+    function cambiarPuntos(equipo, valor){
+
+      puntos[equipo] += valor;
+
+      if(puntos[equipo] < 0){
+        puntos[equipo] = 0;
+      }
+
+      guardarDatos();
+      actualizarPantalla();
+
+    }
+
+    function resetear(equipo){
+
+      puntos[equipo] = 0;
+
+      guardarDatos();
+      actualizarPantalla();
+
+    }
+
+  </script>
+    <div class="powered">
+        powered by SportivaLabs
+    </div>
+</body>
+</html>

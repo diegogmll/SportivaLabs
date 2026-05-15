@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Estadísticas UPSLP</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <style>
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial, Helvetica, sans-serif;
+    }
+
+    body{
+
+      min-height:100vh;
+
+      background:
+      linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+      url('https://www.upslp.edu.mx/upslp/wp-content/uploads/2023/09/DJI_0619.jpg');
+
+      background-size:cover;
+      background-position:center;
+
+      display:flex;
+      justify-content:center;
+      align-items:center;
+
+      padding:40px;
+
+    }
+
+    .contenedor{
+
+      width:100%;
+      max-width:1000px;
+
+      background:#0b1f3a;
+
+      border-radius:30px;
+
+      padding:40px;
+
+      box-shadow:0 15px 35px rgba(0,0,0,0.4);
+
+      text-align:center;
+
+    }
+
+    h1{
+      color:#ff8c32;
+      margin-bottom:30px;
+      font-size:2.5rem;
+    }
+
+    canvas{
+      background:white;
+      border-radius:20px;
+      padding:20px;
+    }
+
+    .volver{
+
+      display:inline-block;
+
+      margin-top:30px;
+
+      background:#ff8c32;
+
+      color:white;
+
+      text-decoration:none;
+
+      padding:15px 25px;
+
+      border-radius:12px;
+
+      font-weight:bold;
+
+      transition:0.3s;
+
+    }
+     .powered{
+    position:fixed;
+    bottom:12px;
+    right:15px;
+
+    color:rgba(255,255,255,0.7);
+
+    font-size:0.9rem;
+
+    letter-spacing:1px;
+
+    font-weight:300;
+
+    z-index:999;
+}
+    .volver:hover{
+      transform:scale(1.05);
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="contenedor">
+
+    <h1>Estadísticas de los Equipos</h1>
+
+    <canvas id="grafica"></canvas>
+
+    <a href="SportivaLabs.html" class="volver">
+      ⬅ Volver
+    </a>
+
+  </div>
+
+  <script>
+
+    function obtenerPuntos(){
+
+      return JSON.parse(localStorage.getItem("puntosEquipos")) || {
+        1:0,
+        2:0,
+        3:0,
+        4:0
+      };
+
+    }
+
+    const datos = obtenerPuntos();
+
+    const ctx = document.getElementById('grafica');
+
+    const grafica = new Chart(ctx, {
+
+      type: 'bar',
+
+      data: {
+
+        labels: [
+          'Ingeniería',
+          'Administración',
+          'Mercadotecnia',
+          'Mecatrónica'
+        ],
+
+        datasets: [{
+
+          label: 'Puntos',
+
+          data: [
+            datos[1],
+            datos[2],
+            datos[3],
+            datos[4]
+          ],
+
+          backgroundColor: [
+            '#ff8c32',
+            '#1f4e8c',
+            '#ffb067',
+            '#4f79b7'
+          ],
+
+          borderRadius:10
+
+        }]
+
+      },
+
+      options: {
+
+        responsive:true,
+
+        plugins:{
+
+          legend:{
+            labels:{
+              color:'black'
+            }
+          }
+
+        },
+
+        scales:{
+
+          y:{
+
+            beginAtZero:true,
+
+            ticks:{
+              color:'black'
+            }
+
+          },
+
+          x:{
+
+            ticks:{
+              color:'black'
+            }
+
+          }
+
+        }
+
+      }
+
+    });
+
+
+    setInterval(() => {
+
+      const nuevosDatos = obtenerPuntos();
+
+      grafica.data.datasets[0].data = [
+        nuevosDatos[1],
+        nuevosDatos[2],
+        nuevosDatos[3],
+        nuevosDatos[4]
+      ];
+
+      grafica.update();
+
+    }, 1000);
+
+  </script>
+    <div class="powered">
+        powered by SportivaLabs
+    </div>
+</body>
+</html>
