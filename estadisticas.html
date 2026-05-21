@@ -230,7 +230,17 @@ new Chart(document.getElementById("grafica"),{
     },
 
     options:{
-        responsive:true
+        responsive:true,
+
+        scales:{
+            y:{
+                beginAtZero:true,
+
+                ticks:{
+                    stepSize:1
+                }
+            }
+        }
     }
 
 });
