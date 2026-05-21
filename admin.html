@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Panel Administrativo</title>
+
+<style>
+
+body{
+    font-family:Arial;
+
+    background:
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+    url('https://www.upslp.edu.mx/upslp/wp-content/uploads/2023/09/DJI_0619.jpg');
+
+    background-size:cover;
+    background-position:center;
+
+    color:white;
+    padding:40px;
+}
+
+h1{
+    text-align:center;
+    margin-bottom:40px;
+    color:#ff8c32;
+}
+
+.bloque{
+
+    background:white;
+    color:#0b1f3a;
+
+    border-radius:20px;
+
+    padding:25px;
+
+    margin-bottom:30px;
+
+}
+
+h2{
+    margin-bottom:20px;
+}
+
+.fila{
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:15px;
+
+}
+
+button{
+
+    border:none;
+
+    background:#ff8c32;
+
+    color:white;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-weight:bold;
+
+    margin-left:5px;
+
+}
+
+button:hover{
+    opacity:0.9;
+}
+
+a{
+
+    display:block;
+    text-align:center;
+    margin-top:30px;
+    color:white;
+    text-decoration:none;
+    font-weight:bold;
+
+}
+
+.powered{
+
+    position:fixed;
+    bottom:12px;
+    right:15px;
+
+    color:rgba(255,255,255,0.7);
+
+    font-size:0.9rem;
+
+}
+
+.reiniciar{
+
+    text-align:center;
+    margin-top:30px;
+
+}
+
+</style>
+</head>
+
+<body>
+
+<h1>Administrar Puntajes</h1>
+
+<div id="contenedor"></div>
+
+<div class="reiniciar">
+
+    <button onclick="reiniciar()">
+        Reiniciar Puntajes
+    </button>
+
+</div>
+
+<a href="SportivaLabs.html">
+Volver
+</a>
+
+<script>
+
+const universidades = {
+
+    upslp:"UPSLP",
+    uaslp:"UASLP",
+    tec:"Tec de Monterrey"
+
+};
+
+let datos = JSON.parse(localStorage.getItem("universidades")) || {
+
+    upslp:{futbol:0, basquet:0, atletismo:0},
+    uaslp:{futbol:0, basquet:0, atletismo:0},
+    tec:{futbol:0, basquet:0, atletismo:0}
+
+};
+
+function guardar(){
+
+    localStorage.setItem(
+        "universidades",
+        JSON.stringify(datos)
+    );
+
+}
+
+function cambiar(uni,deporte,valor){
+
+    datos[uni][deporte] += valor;
+
+    if(datos[uni][deporte] < 0){
+
+        datos[uni][deporte] = 0;
+
+    }
+
+    guardar();
+    render();
+
+}
+
+function reiniciar(){
+
+    datos = {
+
+        upslp:{futbol:0, basquet:0, atletismo:0},
+        uaslp:{futbol:0, basquet:0, atletismo:0},
+        tec:{futbol:0, basquet:0, atletismo:0}
+
+    };
+
+    guardar();
+    render();
+
+}
+
+function render(){
+
+    const contenedor =
+    document.getElementById("contenedor");
+
+    contenedor.innerHTML = "";
+
+    for(let uni in universidades){
+
+        contenedor.innerHTML += `
+
+        <div class="bloque">
+
+            <h2>${universidades[uni]}</h2>
+
+            ${crearFila(uni,"futbol","Futbol")}
+            ${crearFila(uni,"basquet","Basquet")}
+            ${crearFila(uni,"atletismo","Atletismo")}
+
+        </div>
+
+        `;
+
+    }
+
+}
+
+function crearFila(uni,deporte,nombre){
+
+    return `
+
+    <div class="fila">
+
+        <h3>
+            ${nombre}: ${datos[uni][deporte]}
+        </h3>
+
+        <div>
+
+            <button onclick="cambiar('${uni}','${deporte}',1)">
+                +1
+            </button>
+
+            <button onclick="cambiar('${uni}','${deporte}',-1)">
+                -1
+            </button>
+
+        </div>
+
+    </div>
+
+    `;
+
+}
+
+render();
+
+</script>
+
+<div class="powered">
+powered by SportivaLabs
+</div>
+
+</body>
+</html>
