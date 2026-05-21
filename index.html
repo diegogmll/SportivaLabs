@@ -1,157 +1,150 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Semana Deportiva UPSLP</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
+<title>Competencia deportiva UPSLP</title>
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family: Arial, Helvetica, sans-serif;
-    }
+<style>
 
-    body{
-      min-height:100vh;
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
 
-      background:
-      linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
-      url('https://www.upslp.edu.mx/upslp/wp-content/uploads/2023/09/DJI_0619.jpg');
+body{
 
-      background-size:cover;
-      background-position:center;
-      background-attachment:fixed;
+    min-height:100vh;
 
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      padding:40px;
-    }
+    background:
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+    url('https://www.upslp.edu.mx/upslp/wp-content/uploads/2023/09/DJI_0619.jpg');
 
-    .contenedor{
-      width:100%;
-      max-width:1200px;
-      text-align:center;
-    }
+    background-size:cover;
+    background-position:center;
 
-    .titulo{
-      color:white;
-      margin-bottom:25px;
-    }
+    padding:40px;
+}
 
-    .titulo h1{
-      font-size:3rem;
-      color:#ff8c32;
-      margin-bottom:10px;
-    }
+.titulo{
+    text-align:center;
+    color:white;
+    margin-bottom:40px;
+}
 
-    .panel-equipos{
-      background:#0b1f3a;
-      border-radius:30px;
-      padding:35px;
-      box-shadow:0 15px 35px rgba(0,0,0,0.4);
-    }
+.titulo h1{
+    color:#ff8c32;
+    font-size:3rem;
+    margin-bottom:10px;
+}
 
-    .equipos-grid{
-      display:grid;
-      grid-template-columns:repeat(auto-fit, minmax(260px, 1fr));
-      gap:25px;
-    }
+.grid{
 
-    .equipo-card{
-      background:white;
-      border-radius:22px;
-      padding:25px;
-      transition:0.3s;
-      position:relative;
-      overflow:hidden;
-    }
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(300px,1fr));
+    gap:30px;
 
-    .equipo-card:hover{
-      transform:translateY(-5px);
-    }
+}
 
-    .barra{
-      position:absolute;
-      top:0;
-      left:0;
-      width:100%;
-      height:8px;
-      background:#ff8c32;
-    }
+.card{
 
-    .nombre-equipo{
-      color:#0b1f3a;
-      font-size:1.5rem;
-      font-weight:bold;
-      margin-top:10px;
-      margin-bottom:15px;
-    }
+    background:#0b1f3a;
 
-    .contador{
-      font-size:4rem;
-      font-weight:bold;
-      color:#102b52;
-      margin:15px 0 25px;
-    }
+    border-radius:25px;
 
-    .botones{
-      display:grid;
-      grid-template-columns:1fr 1fr;
-      gap:12px;
-    }
+    padding:30px;
 
-    button{
-      border:none;
-      border-radius:12px;
-      padding:14px;
-      font-size:1rem;
-      font-weight:bold;
-      cursor:pointer;
-      transition:0.2s;
-    }
+    color:white;
 
-    button:hover{
-      transform:scale(1.03);
-    }
+    box-shadow:0 15px 35px rgba(0,0,0,0.4);
 
-    .sumar{
-      background:#ff8c32;
-      color:white;
-    }
+}
 
-    .restar{
-      background:#102b52;
-      color:white;
-    }
+.card h2{
+    text-align:center;
+    margin-bottom:25px;
+    color:#ff8c32;
+    font-size:2rem;
+}
 
-    .reset{
-      grid-column:span 2;
-      background:#e8edf5;
-      color:#0b1f3a;
-    }
+.deporte{
 
-    .estadisticas-btn{
-      margin-top:30px;
-      background:#ff8c32;
-      color:white;
-      padding:16px 28px;
-      font-size:1rem;
-      border-radius:14px;
-      text-decoration:none;
-      display:inline-block;
-      font-weight:bold;
-      transition:0.3s;
-    }
+    background:white;
 
-    .estadisticas-btn:hover{
-      transform:scale(1.05);
-      background:#ff9d52;
-    }
-    .powered{
+    color:#0b1f3a;
+
+    border-radius:18px;
+
+    padding:18px;
+
+    margin-bottom:18px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.deporte span{
+    font-size:1.2rem;
+    font-weight:bold;
+}
+
+.puntos{
+
+    background:#ff8c32;
+    color:white;
+
+    width:55px;
+    height:55px;
+
+    border-radius:50%;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    font-size:1.4rem;
+    font-weight:bold;
+}
+
+.botones{
+
+    text-align:center;
+    margin-top:40px;
+
+}
+
+a{
+
+    text-decoration:none;
+
+    background:#ff8c32;
+
+    color:white;
+
+    padding:16px 28px;
+
+    border-radius:14px;
+
+    margin:10px;
+
+    display:inline-block;
+
+    font-weight:bold;
+
+    transition:0.3s;
+
+}
+
+a:hover{
+    transform:scale(1.05);
+}
+
+.powered{
+
     position:fixed;
     bottom:12px;
     right:15px;
@@ -160,201 +153,140 @@
 
     font-size:0.9rem;
 
-    letter-spacing:1px;
-
-    font-weight:300;
-
-    z-index:999;
 }
-  </style>
+
+</style>
 </head>
 
 <body>
 
-  <div class="contenedor">
+<div class="titulo">
 
-    <div class="titulo">
-      <h1>Semana Deportiva UPSLP</h1>
-      <h2>
-        Contador oficial de puntos para los equipos
-      </h2>
+    <h1>Competencia Universitaria 2026</h1>
+    <h3>Marcador Oficial Interuniversitario</h3>
+
+</div>
+
+<div class="grid">
+
+    <div class="card">
+
+        <h2>UPSLP</h2>
+
+        <div class="deporte">
+            <span>Futbol</span>
+            <div class="puntos" id="u1f">0</div>
+        </div>
+
+        <div class="deporte">
+            <span>Basquet</span>
+            <div class="puntos" id="u1b">0</div>
+        </div>
+
+        <div class="deporte">
+            <span>Atletismo</span>
+            <div class="puntos" id="u1a">0</div>
+        </div>
+
     </div>
 
-    <div class="panel-equipos">
+    <div class="card">
 
-      <div class="equipos-grid">
+        <h2>UASLP</h2>
 
-        <div class="equipo-card">
-
-          <div class="barra"></div>
-
-          <div class="nombre-equipo">
-            ITI
-          </div>
-
-          <div class="contador" id="puntos1">0</div>
-
-          <div class="botones">
-
-            <button class="sumar" onclick="cambiarPuntos(1,1)">
-              +1 Punto
-            </button>
-
-            <button class="restar" onclick="cambiarPuntos(1,-1)">
-              -1 Punto
-            </button>
-
-            <button class="reset" onclick="resetear(1)">
-              Reiniciar
-            </button>
-
-          </div>
-
+        <div class="deporte">
+            <span>Futbol</span>
+            <div class="puntos" id="u2f">0</div>
         </div>
 
-        <div class="equipo-card">
-
-          <div class="barra"></div>
-
-          <div class="nombre-equipo">
-            LAG
-          </div>
-
-          <div class="contador" id="puntos2">0</div>
-
-          <div class="botones">
-
-            <button class="sumar" onclick="cambiarPuntos(2,1)">
-              +1 Punto
-            </button>
-
-            <button class="restar" onclick="cambiarPuntos(2,-1)">
-              -1 Punto
-            </button>
-
-            <button class="reset" onclick="resetear(2)">
-              Reiniciar
-            </button>
-
-          </div>
-
+        <div class="deporte">
+            <span>Basquet</span>
+            <div class="puntos" id="u2b">0</div>
         </div>
 
-        <div class="equipo-card">
-
-          <div class="barra"></div>
-
-          <div class="nombre-equipo">
-            MERCA
-          </div>
-
-          <div class="contador" id="puntos3">0</div>
-
-          <div class="botones">
-
-            <button class="sumar" onclick="cambiarPuntos(3,1)">
-              +1 Punto
-            </button>
-
-            <button class="restar" onclick="cambiarPuntos(3,-1)">
-              -1 Punto
-            </button>
-
-            <button class="reset" onclick="resetear(3)">
-              Reiniciar
-            </button>
-
-          </div>
-
+        <div class="deporte">
+            <span>Atletismo</span>
+            <div class="puntos" id="u2a">0</div>
         </div>
 
-        <div class="equipo-card">
+    </div>
 
-          <div class="barra"></div>
+    <div class="card">
 
-          <div class="nombre-equipo">
-            ISTI
-          </div>
+        <h2>Tec de Monterrey</h2>
 
-          <div class="contador" id="puntos4">0</div>
-
-          <div class="botones">
-
-            <button class="sumar" onclick="cambiarPuntos(4,1)">
-              +1 Punto
-            </button>
-
-            <button class="restar" onclick="cambiarPuntos(4,-1)">
-              -1 Punto
-            </button>
-
-            <button class="reset" onclick="resetear(4)">
-              Reiniciar
-            </button>
-
-          </div>
-
+        <div class="deporte">
+            <span>Futbol</span>
+            <div class="puntos" id="u3f">0</div>
         </div>
 
-      </div>
+        <div class="deporte">
+            <span>Basquet</span>
+            <div class="puntos" id="u3b">0</div>
+        </div>
 
-      <a href="estadisticas.html" class="estadisticas-btn">
+        <div class="deporte">
+            <span>Atletismo</span>
+            <div class="puntos" id="u3a">0</div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="botones">
+
+    <a href="admin.html">
+        Administrar Puntajes
+    </a>
+
+    <a href="estadisticas.html">
         Ver Estadísticas
-      </a>
+    </a>
 
-    </div>
+</div>
 
-  </div>
+<script>
 
-  <script>
+function obtenerDatos(){
 
-    let puntos = JSON.parse(localStorage.getItem("puntosEquipos")) || {
-      1: 0,
-      2: 0,
-      3: 0,
-      4: 0
+    return JSON.parse(localStorage.getItem("universidades")) || {
+
+        upslp:{futbol:0, basquet:0, atletismo:0},
+        uaslp:{futbol:0, basquet:0, atletismo:0},
+        tec:{futbol:0, basquet:0, atletismo:0}
+
     };
 
-    actualizarPantalla();
+}
 
-    function guardarDatos(){
-      localStorage.setItem("puntosEquipos", JSON.stringify(puntos));
-    }
+function actualizar(){
 
-    function actualizarPantalla(){
+    const d = obtenerDatos();
 
-      document.getElementById("puntos1").textContent = puntos[1];
-      document.getElementById("puntos2").textContent = puntos[2];
-      document.getElementById("puntos3").textContent = puntos[3];
-      document.getElementById("puntos4").textContent = puntos[4];
+    document.getElementById("u1f").textContent = d.upslp.futbol;
+    document.getElementById("u1b").textContent = d.upslp.basquet;
+    document.getElementById("u1a").textContent = d.upslp.atletismo;
 
-    }
+    document.getElementById("u2f").textContent = d.uaslp.futbol;
+    document.getElementById("u2b").textContent = d.uaslp.basquet;
+    document.getElementById("u2a").textContent = d.uaslp.atletismo;
 
-    function cambiarPuntos(equipo, valor){
+    document.getElementById("u3f").textContent = d.tec.futbol;
+    document.getElementById("u3b").textContent = d.tec.basquet;
+    document.getElementById("u3a").textContent = d.tec.atletismo;
 
-      puntos[equipo] += valor;
+}
 
-      if(puntos[equipo] < 0){
-        puntos[equipo] = 0;
-      }
+actualizar();
 
-      guardarDatos();
-      actualizarPantalla();
+setInterval(actualizar,1000);
 
-    }
+</script>
 
-    function resetear(equipo){
+<div class="powered">
+powered by SportivaLabs
+</div>
 
-      puntos[equipo] = 0;
-
-      guardarDatos();
-      actualizarPantalla();
-
-    }
-
-  </script>
-    <div class="powered">
-        powered by SportivaLabs
-    </div>
 </body>
 </html>
