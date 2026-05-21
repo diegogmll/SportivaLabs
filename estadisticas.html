@@ -1,91 +1,101 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Estadísticas UPSLP</title>
 
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<meta charset="UTF-8">
 
-  <style>
+<title>Estadísticas</title>
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      font-family:Arial, Helvetica, sans-serif;
-    }
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-    body{
+<style>
 
-      min-height:100vh;
+body{
 
-      background:
-      linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-      url('https://www.upslp.edu.mx/upslp/wp-content/uploads/2023/09/DJI_0619.jpg');
+ background:
+    linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)),
+    url('https://www.upslp.edu.mx/upslp/wp-content/uploads/2023/09/DJI_0619.jpg');
 
-      background-size:cover;
-      background-position:center;
+    background-size:cover;
+    background-position:center;
+    color:white;
+    font-family:Arial;
 
-      display:flex;
-      justify-content:center;
-      align-items:center;
+    padding:40px;
 
-      padding:40px;
+}
 
-    }
+h1{
+    text-align:center;
+    color:#ff8c32;
+    margin-bottom:40px;
+}
 
-    .contenedor{
+.grafica{
 
-      width:100%;
-      max-width:1000px;
+    background:white;
 
-      background:#0b1f3a;
+    border-radius:20px;
 
-      border-radius:30px;
+    padding:25px;
 
-      padding:40px;
+    margin-bottom:40px;
 
-      box-shadow:0 15px 35px rgba(0,0,0,0.4);
+}
 
-      text-align:center;
+.resumen{
 
-    }
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+    gap:20px;
 
-    h1{
-      color:#ff8c32;
-      margin-bottom:30px;
-      font-size:2.5rem;
-    }
+}
 
-    canvas{
-      background:white;
-      border-radius:20px;
-      padding:20px;
-    }
+.card{
 
-    .volver{
+    background:#0b1f3a;
 
-      display:inline-block;
+    border-radius:20px;
 
-      margin-top:30px;
+    padding:25px;
 
-      background:#ff8c32;
+    text-align:center;
 
-      color:white;
+}
 
-      text-decoration:none;
+.numero{
 
-      padding:15px 25px;
+    font-size:3rem;
+    color:#ff8c32;
+    margin-top:15px;
+}
 
-      border-radius:12px;
+h3{
+    margin-top:15px;
+    color:white;
+}
 
-      font-weight:bold;
+a{
 
-      transition:0.3s;
+    display:block;
+    width:max-content;
 
-    }
-     .powered{
+    margin:30px auto;
+
+    background:#ff8c32;
+
+    color:white;
+
+    padding:15px 25px;
+
+    border-radius:12px;
+
+    text-decoration:none;
+
+}
+
+.powered{
+
     position:fixed;
     bottom:12px;
     right:15px;
@@ -94,146 +104,148 @@
 
     font-size:0.9rem;
 
-    letter-spacing:1px;
-
-    font-weight:300;
-
-    z-index:999;
 }
-    .volver:hover{
-      transform:scale(1.05);
-    }
 
-  </style>
+</style>
 </head>
 
 <body>
 
-  <div class="contenedor">
+<h1>Estadísticas</h1>
 
-    <h1>Estadísticas de los Equipos</h1>
+<div class="grafica">
 
-    <canvas id="grafica"></canvas>
+<canvas id="grafica"></canvas>
 
-    <a href="index.html" class="volver">
-      Volver
-    </a>
+</div>
 
-  </div>
+<div class="resumen">
 
-  <script>
+    <div class="card">
 
-    function obtenerPuntos(){
+        <h2>Universidad Líder</h2>
 
-      return JSON.parse(localStorage.getItem("puntosEquipos")) || {
-        1:0,
-        2:0,
-        3:0,
-        4:0
-      };
+        <div class="numero" id="lider"></div>
 
+        <h3 id="puntajeLider"></h3>
+
+    </div>
+
+    <div class="card">
+
+        <h2>Total General del Torneo</h2>
+
+        <div class="numero" id="total"></div>
+
+    </div>
+
+</div>
+
+<a href="index.html">
+Volver
+</a>
+
+<script>
+
+const datos = JSON.parse(localStorage.getItem("universidades")) || {
+
+    upslp:{futbol:0, basquet:0, atletismo:0},
+    uaslp:{futbol:0, basquet:0, atletismo:0},
+    tec:{futbol:0, basquet:0, atletismo:0}
+
+};
+
+function total(u){
+
+    return u.futbol + u.basquet + u.atletismo;
+
+}
+
+const puntosUPSLP = total(datos.upslp);
+const puntosUASLP = total(datos.uaslp);
+const puntosTEC = total(datos.tec);
+
+const totalGeneral =
+puntosUPSLP + puntosUASLP + puntosTEC;
+
+document.getElementById("total").textContent =
+totalGeneral;
+
+let lider = "UPSLP";
+let max = puntosUPSLP;
+
+if(puntosUASLP > max){
+
+    max = puntosUASLP;
+    lider = "UASLP";
+
+}
+
+if(puntosTEC > max){
+
+    max = puntosTEC;
+    lider = "Tec de Monterrey";
+
+}
+
+document.getElementById("lider").textContent =
+lider;
+
+document.getElementById("puntajeLider").textContent =
+max + " puntos";
+
+new Chart(document.getElementById("grafica"),{
+
+    type:'bar',
+
+    data:{
+
+        labels:['UPSLP','UASLP','TEC'],
+
+        datasets:[
+
+            {
+                label:'Futbol',
+                data:[
+                    datos.upslp.futbol,
+                    datos.uaslp.futbol,
+                    datos.tec.futbol
+                ]
+            },
+
+            {
+                label:'Basquet',
+                data:[
+                    datos.upslp.basquet,
+                    datos.uaslp.basquet,
+                    datos.tec.basquet
+                ]
+            },
+
+            {
+                label:'Atletismo',
+                data:[
+                    datos.upslp.atletismo,
+                    datos.uaslp.atletismo,
+                    datos.tec.atletismo
+                ]
+            }
+
+        ]
+
+    },
+
+    options:{
+        responsive:true
     }
 
-    const datos = obtenerPuntos();
+});
 
-    const ctx = document.getElementById('grafica');
+</script>
 
-    const grafica = new Chart(ctx, {
+<div class="powered">
+powered by SportivaLabs
+</div>
 
-      type: 'bar',
-
-      data: {
-
-        labels: [
-          'ITI',
-          'LAG',
-          'MERCA',
-          'ISTI'
-        ],
-
-        datasets: [{
-
-          label: 'Puntos',
-
-          data: [
-            datos[1],
-            datos[2],
-            datos[3],
-            datos[4]
-          ],
-
-          backgroundColor: [
-            '#ff8c32',
-            '#1f4e8c',
-            '#ffb067',
-            '#4f79b7'
-          ],
-
-          borderRadius:10
-
-        }]
-
-      },
-
-      options: {
-
-        responsive:true,
-
-        plugins:{
-
-          legend:{
-            labels:{
-              color:'black'
-            }
-          }
-
-        },
-
-        scales:{
-
-          y:{
-
-            beginAtZero:true,
-
-            ticks:{
-              color:'black'
-            }
-
-          },
-
-          x:{
-
-            ticks:{
-              color:'black'
-            }
-
-          }
-
-        }
-
-      }
-
-    });
-
-
-    setInterval(() => {
-
-      const nuevosDatos = obtenerPuntos();
-
-      grafica.data.datasets[0].data = [
-        nuevosDatos[1],
-        nuevosDatos[2],
-        nuevosDatos[3],
-        nuevosDatos[4]
-      ];
-
-      grafica.update();
-
-    }, 1000);
-
-  </script>
-    <div class="powered">
-        powered by SportivaLabs
-    </div>
 </body>
 </html>
