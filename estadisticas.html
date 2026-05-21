@@ -45,9 +45,8 @@ h1{
 
 .resumen{
 
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-    gap:20px;
+    display:flex;
+    justify-content:center;
 
 }
 
@@ -57,9 +56,13 @@ h1{
 
     border-radius:20px;
 
-    padding:25px;
+    padding:30px;
 
     text-align:center;
+
+    width:350px;
+
+    box-shadow:0 0 15px rgba(0,0,0,0.4);
 
 }
 
@@ -68,6 +71,10 @@ h1{
     font-size:3rem;
     color:#ff8c32;
     margin-top:15px;
+}
+
+h2{
+    color:#ff8c32;
 }
 
 h3{
@@ -131,14 +138,6 @@ a{
 
     </div>
 
-    <div class="card">
-
-        <h2>Total General del Torneo</h2>
-
-        <div class="numero" id="total"></div>
-
-    </div>
-
 </div>
 
 <a href="index.html">
@@ -165,12 +164,6 @@ const puntosUPSLP = total(datos.upslp);
 const puntosUASLP = total(datos.uaslp);
 const puntosTEC = total(datos.tec);
 
-const totalGeneral =
-puntosUPSLP + puntosUASLP + puntosTEC;
-
-document.getElementById("total").textContent =
-totalGeneral;
-
 let lider = "UPSLP";
 let max = puntosUPSLP;
 
@@ -192,7 +185,7 @@ document.getElementById("lider").textContent =
 lider;
 
 document.getElementById("puntajeLider").textContent =
-max + " puntos";
+max + " puntos acumulados";
 
 new Chart(document.getElementById("grafica"),{
 
